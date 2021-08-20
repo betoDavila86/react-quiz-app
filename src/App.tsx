@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import QuestionCard from './components/QuestionCard';
 
-function App() {
+const App = () => {
+  const startTriviaHandler = async () => {};
+  const checkAnswerHandler = () => {};
+  const nextQuestionHandler = () => {};
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="title">Coolest Quiz ever!</h1>
+      <button className="start" onClick={startTriviaHandler}>Start</button>
+      <p className="score">Score</p>
+      <p className="loading">Loading question...</p>
+      <button className="next" onClick={nextQuestionHandler}>Next question</button>
+      <QuestionCard />
     </div>
   );
 }
