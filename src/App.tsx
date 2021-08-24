@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import { GlobalStyle, Wrapper } from './App.styles';
 import QuestionCard from './components/QuestionCard';
 
 import { retrieveQuestions } from './logic/retrieve-questions';
@@ -57,29 +57,32 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Coolest Quiz ever!</h1>
-      {isGameOver || userAnswers.length === TOTAL_QUESTIONS ?
-        <button className="start" onClick={startTriviaHandler}>Start</button>
-        : null}
-      {!isGameOver ? <p className="score">Score: {score} </p> : null}
-      {isLoading && <p className="loading">Loading question...</p>}
-      {!isLoading && !isGameOver &&
-        <QuestionCard
-          questionNumber={questionNumber + 1}
-          onSelectAnswer={checkAnswerHandler}
-          totalQuestions={TOTAL_QUESTIONS}
-          answers={questions[questionNumber].answers}
-          question={questions[questionNumber].question}
-          userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
-        />}
-      {!isLoading &&
-        !isGameOver &&
-        userAnswers.length === questionNumber + 1 &&
-        questionNumber !== TOTAL_QUESTIONS - 1 ?
-        <button className="next" onClick={nextQuestionHandler}>Next question</button>
-        : null}
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <h1 className="title">Coolest Quiz ever!</h1>
+        {isGameOver || userAnswers.length === TOTAL_QUESTIONS ?
+          <button className="start" onClick={startTriviaHandler}>Start</button>
+          : null}
+        {!isGameOver ? <p className="score">Score: {score} </p> : null}
+        {isLoading && <p className="loading">Loading question...</p>}
+        {!isLoading && !isGameOver &&
+          <QuestionCard
+            questionNumber={questionNumber + 1}
+            onSelectAnswer={checkAnswerHandler}
+            totalQuestions={TOTAL_QUESTIONS}
+            answers={questions[questionNumber].answers}
+            question={questions[questionNumber].question}
+            userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
+          />}
+        {!isLoading &&
+          !isGameOver &&
+          userAnswers.length === questionNumber + 1 &&
+          questionNumber !== TOTAL_QUESTIONS - 1 ?
+          <button className="next" onClick={nextQuestionHandler}>Next question</button>
+          : null}
+      </Wrapper>
+    </>
   );
 }
 
